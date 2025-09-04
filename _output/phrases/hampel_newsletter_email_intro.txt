@@ -1,0 +1,1 @@
+<p>Newsletter from {board}.</p>

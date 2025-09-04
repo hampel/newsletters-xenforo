@@ -1,14 +1,16 @@
 {
     "legacy_addon_id": "",
     "title": "Newsletters",
-    "description": "",
+    "description": "Send email newsletters from XenForo posts",
     "version_id": 1000011,
     "version_string": "1.0.0 Alpha 1",
-    "dev": "",
-    "dev_url": "",
+    "dev": "Simon Hampel",
+    "dev_url": "https://xenforo.com/community/members/sim.4264/",
     "faq_url": "",
     "support_url": "",
-    "extra_urls": [],
+    "extra_urls": {
+        "Git Repository": "https://github.com/hampel/newsletters-xenforo"
+    },
     "require": [],
-    "icon": ""
+    "icon": "fa-newspaper"
 }

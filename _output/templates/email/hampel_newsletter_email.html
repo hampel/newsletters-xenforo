@@ -1,0 +1,28 @@
+<mail:subject>
+	{{ phrase('hampel_newsletter_subject', {
+		'title': (empty($xf.options->hampelNewslettersPrefix) ? '' : "{$xf.options->hampelNewslettersPrefix} ") . $thread.title
+	}) }}
+</mail:subject>
+
+{{ phrase('hampel_newsletter_email_intro', {
+	'board': '<a href="' . link('canonical:index') . '">' . $xf.options.boardTitle . '</a>'
+}) }}
+
+<h2><a href="{{ link('canonical:posts', $post) }}">{{ prefix('thread', $thread, 'escaped') }}{$thread.title}</a></h2>
+
+<div>{{ bb_code_type('emailHtml', $post.message, 'post', $post) }}</div>
+
+<br />
+
+<table cellpadding="10" cellspacing="0" border="0" width="100%" class="linkBar">
+	<tr>
+		<td>
+			<a href="{{ link('canonical:threads/unread', $thread, {'new': 1}) }}" class="button">{{ phrase('hampel_newsletters_view_this_newsletter') }}</a>
+		</td>
+		<td align="{{ $xf.isRtl ? 'left' : 'right' }}">
+			&nbsp;
+		</td>
+	</tr>
+</table>
+
+<xf:macro id="thread_forum_macros::watched_forum_footer" arg-thread="{$thread}" arg-forum="{$forum}" />
