@@ -13,18 +13,12 @@ class MailingList extends Entity
         $structure->columns = [
             'list_id' => ['type' => self::UINT, 'autoIncrement' => true, 'nullable' => true],
             'name' => ['type' => self::STR, 'maxLength' => 128, 'required' => true],
-            'type' => ['type' => self::STR, 'required' => true, 'allowedValues' => ['manual', 'programmatic', 'joinable']],
             'created_date' => ['type' => self::UINT, 'required' => true],
         ];
 
         $structure->relations = [
-            'Subscriptions' => [
-                'entity' => 'Hampel\Newsletters:Subscription',
-                'type' => self::TO_MANY,
-                'conditions' => 'list_id'
-            ],
-            'Segments' => [
-                'entity' => 'Hampel\Newsletters:Segment',
+            'GroupMaps' => [
+                'entity' => 'Hampel\Newsletters:Map',
                 'type' => self::TO_MANY,
                 'conditions' => 'list_id'
             ],

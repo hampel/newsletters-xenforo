@@ -13,7 +13,7 @@ class Subscription extends Entity
         $structure->columns = [
             'subscription_id' => ['type' => self::UINT, 'autoIncrement' => true, 'nullable' => true],
             'subscriber_id' => ['type' => self::UINT, 'required' => true],
-            'list_id' => ['type' => self::UINT, 'required' => true],
+            'group_id' => ['type' => self::UINT, 'required' => true],
         ];
 
         $structure->relations = [
@@ -22,10 +22,10 @@ class Subscription extends Entity
                 'type' => self::TO_MANY,
                 'conditions' => 'subscriber_id'
             ],
-            'MailingLists' => [
-                'entity' => 'Hampel\Newsletters:MailingList',
+            'Groups' => [
+                'entity' => 'Hampel\Newsletters:Group',
                 'type' => self::TO_MANY,
-                'conditions' => 'list_id'
+                'conditions' => 'group_id'
             ],
         ];
 

@@ -3,25 +3,26 @@
 use XF\Mvc\Entity\Entity;
 use XF\Mvc\Entity\Structure;
 
-class SegmentMap extends Entity
+class Map extends Entity
 {
     public static function getStructure(Structure $structure)
     {
-        $structure->table = 'xf_newsletters_segment_map';
-        $structure->shortName = 'Hampel\Newsletters:SegmentMap';
-        $structure->primaryKey = 'segment_map_id';
+        $structure->table = 'xf_newsletters_map';
+        $structure->shortName = 'Hampel\Newsletters:Map';
+        $structure->primaryKey = 'map_id';
         $structure->columns = [
-            'segment_map_id' => ['type' => self::UINT, 'autoIncrement' => true, 'nullable' => true],
-            'segment_id' => ['type' => self::UINT, 'required' => true],
+            'map_id' => ['type' => self::UINT, 'autoIncrement' => true, 'nullable' => true],
+            'group_id' => ['type' => self::UINT, 'required' => true],
             'list_id' => ['type' => self::UINT, 'required' => true],
         ];
 
         $structure->relations = [
-            'Segments' => [
-                'entity' => 'Hampel\Newsletters:Segment',
+            'Groups' => [
+                'entity' => 'Hampel\Newsletters:Group',
                 'type' => self::TO_MANY,
-                'conditions' => 'subscriber_id'
+                'conditions' => 'group_id'
             ],
+
             'MailingLists' => [
                 'entity' => 'Hampel\Newsletters:MailingList',
                 'type' => self::TO_MANY,
