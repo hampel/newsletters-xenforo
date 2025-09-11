@@ -1,0 +1,11 @@
+{
+    "route_type": "admin",
+    "route_prefix": "newsletters",
+    "sub_name": "subscribers",
+    "format": "subscribers/:int<subscriber_id>/",
+    "build_class": "",
+    "build_method": "",
+    "controller": "Hampel\\Newsletters:Subscribers",
+    "context": "newslettersSubscribers",
+    "action_prefix": ""
+}

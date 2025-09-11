@@ -1,0 +1,68 @@
+<xf:title>{{ phrase('newsletters_subscribers') }}</xf:title>
+
+<div class="block">
+	<div class="block-outer">
+		<div class="block-outer-main">
+			<xf:button class="button--link menuTrigger" data-xf-click="menu" aria-expanded="false" aria-haspopup="true">
+				{{ phrase('newsletters_status:') }} {{ $statusOptions.{$linkParams.status} ?: phrase('newsletters_all') }}
+			</xf:button>
+
+			<div class="menu" data-menu="menu" aria-hidden="true">
+				<div class="menu-content">
+					<h3 class="menu-header">{{ phrase('newsletters_status...') }}</h3>
+					<a href="{{ link('newsletters/subscribers', null, {'status': 'all'}) }}" class="menu-linkRow {{ $linkParams.status == 'all' ? 'is-selected' : '' }}">{{ phrase('newsletters_all') }}</a>
+					<xf:foreach loop="$statusOptions" key="$statusKey" value="$statusName">
+						<a href="{{ link('newsletters/subscribers', null, {'status': $statusKey}) }}"
+						   class="menu-linkRow {{ $linkParams.status == $statusKey ? 'is-selected' : '' }}">
+							{$statusName}
+						</a>
+					</xf:foreach>
+				</div>
+			</div>
+		</div>			
+		<xf:macro id="filter_macros::quick_filter" arg-key="subscribers" 
+				  arg-ajax="{{ link('newsletters/subscribers', null, {'status': $linkParams.status}) }}"
+				  arg-class="block-outer-opposite" />
+	</div>
+	<div class="block-container">
+		<xf:if is="$subscribers is not empty">
+			<div class="block-body">
+				<xf:datalist data-xf-init="responsive-data-list">
+					<xf:datarow rowtype="header">
+						<xf:cell>{{ phrase('newsletters_subscriber') }}</xf:cell>
+						<xf:cell class="dataList-cell--min">{{ phrase('newsletters_status') }}</xf:cell>
+						<xf:cell class="dataList-cell--min">{{ phrase('newsletters_source') }}</xf:cell>
+						<xf:cell class="dataList-cell--min">{{ phrase('newsletters_signup_date') }}</xf:cell>
+						<xf:cell class="dataList-cell--min">&nbsp;</xf:cell>
+						<xf:cell class="dataList-cell--min">&nbsp;</xf:cell>
+					</xf:datarow>
+					<xf:foreach loop="$subscribers" value="$subscriber">
+
+						<xf:datarow>
+							<xf:cell class="dataList-cell--link dataList-cell--main" hash="{$subscriber.subscriber_id}"><a href="{{ link('newsletters/subscribers/edit', $subscriber) }}" data-xf-click="overlay"><b>{$subscriber.email}</b> <span class="dataList-hint" dir="auto">{$subscriber.User.username}</span></a></xf:cell>
+							<xf:cell class="dataList-cell--min dataList-cell--hint">{{ phrase_dynamic('newsletters_' . $subscriber.status) }}</xf:cell>
+							<xf:cell class="dataList-cell--min dataList-cell--hint">{{ phrase_dynamic('newsletters_' . $subscriber.source) }}</xf:cell>
+							<xf:cell class="dataList-cell--min dataList-cell--hint"><xf:date time="{$subscriber.signup_date}" /></xf:cell>
+							<xf:if is="$subscriber.User.user_id">
+								<xf:action href="{{ link_type('public', 'members', $subscriber) }}">{{ phrase('newsletters_user_info') }}</xf:action>
+								<xf:else />
+								<xf:cell class="dataList-cell--action dataList-cell--min dataList-cell--hint">
+									&nbsp;
+								</xf:cell>
+							</xf:if>						
+							<xf:delete href="{{ link('newsletters/subscribers/delete', $subscriber) }}" />
+						</xf:datarow>
+					</xf:foreach>
+				</xf:datalist>
+			</div>
+			<div class="block-footer block-footer--split">
+				<span class="block-footer-counter">{{ display_totals($subscribers, $total) }}</span>
+			</div>
+			<xf:else />
+			<div class="block-body block-row">{{ phrase('no_results_found') }}</div>
+		</xf:if>
+	</div>
+	<xf:pagenav page="{$page}" perpage="{$perPage}" total="{$total}"
+		link="newsletters/subscribers" params="{$linkParams}"
+		wrapperclass="block-outer block-outer--after" />
+</div>

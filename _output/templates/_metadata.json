@@ -1,4 +1,9 @@
 {
+    "admin/newsletters_subscribers_list.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "9d1c7b7cf3cab45c3112e892505abe15"
+    },
     "email/hampel_newsletter_email.html": {
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",

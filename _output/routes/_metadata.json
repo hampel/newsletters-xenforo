@@ -1,0 +1,14 @@
+{
+    "admin_newsletters_.json": {
+        "hash": "5962ad0133f1e343b69f20b80f5ea075"
+    },
+    "admin_newsletters_groups.json": {
+        "hash": "5a7f70ba9809528d35b439c060895050"
+    },
+    "admin_newsletters_mailing-lists.json": {
+        "hash": "fdc9f1da1556e76b2294bea7005b95aa"
+    },
+    "admin_newsletters_subscribers.json": {
+        "hash": "a02dd8f5b1507a96b7cb2a73513686b2"
+    }
+}

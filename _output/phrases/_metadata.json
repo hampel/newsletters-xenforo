@@ -1,4 +1,28 @@
 {
+    "admin_navigation.newsletters.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "d04ccf61aef8e1107d25b84cf8e37d55"
+    },
+    "admin_navigation.newslettersGroups.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "a37ede293936e29279ed543129451ec3"
+    },
+    "admin_navigation.newslettersSubscribers.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "39f7a3e2b56e9bfd753ba6325533a127"
+    },
+    "admin_permission.newsletters.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "a92306241681794f23b952ba6e2e1e3f"
+    },
     "hampel_newsletter_email_intro.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -22,6 +46,126 @@
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "63f947669681653b56f3bed715b114c9"
+    },
+    "newsletters_active.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "4d3d769b812b6faa6b76e1a8abaece2d"
+    },
+    "newsletters_all.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "b1c94ca2fbc3e78fc30069c8d0f01680"
+    },
+    "newsletters_disabled.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "924057b05733a718dba20150ca7fa6eb"
+    },
+    "newsletters_email_bounce.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "ec69e9526788d01822c6454eaece25c8"
+    },
+    "newsletters_email_confirm.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "63650598ea092289808a5c7d65b35e72"
+    },
+    "newsletters_import.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "72d6d7a1885885bb55a565fd1070581a"
+    },
+    "newsletters_joinable.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "71a802efd9b907c97b64e3ef87493255"
+    },
+    "newsletters_manual.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "e1ba155a9f2e8c3be94020eef32a0301"
+    },
+    "newsletters_rejected.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "dc2c8862230c54b7ebd01023aa03ca73"
+    },
+    "newsletters_signup_date.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "e4f5e2dbbde32d6fe358f17418fbc03e"
+    },
+    "newsletters_source.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "f31bbdd1b3e85bccd652680e16935819"
+    },
+    "newsletters_spam_complaint.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "3b9b7d348f4f909a7527d726b1caae8c"
+    },
+    "newsletters_status.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "ec53a8c4f07baed5d8825072c89799be"
+    },
+    "newsletters_subscriber.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "992c4a5b4628d8ebf671cf460254ee81"
+    },
+    "newsletters_subscribers.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "39f7a3e2b56e9bfd753ba6325533a127"
+    },
+    "newsletters_unsubscribed.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "fdc7aa92ecb714c25019e988c09aeffa"
+    },
+    "newsletters_user.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "8f9bfe9d1345237cb3b2b205864da075"
+    },
+    "newsletters_user_info.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "ab670a38d997f385d053216283c4a5e4"
+    },
+    "newsletters_usergroup.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "f76e26861409b223e7accc9724883303"
+    },
+    "newsletters_webform.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "0562fe4f7fc075a7dc99a7e3e1bdbdb4"
     },
     "option.hampelNewslettersPrefix.txt": {
         "global_cache": false,
