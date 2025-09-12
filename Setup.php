@@ -69,6 +69,17 @@ class Setup extends AbstractSetup
 
 	}
 
+    // ################################ FINAL INSTALL ACTIONS ##########################
+
+    public function postInstall(array &$stateChanges)
+    {
+        // rebuild subscribers
+        $this->app->jobManager()->enqueueUnique(
+            'newslettersSubscriberRebuild',
+            SubscriberRebuild::class
+        );
+    }
+
     // ################################ UPGRADE ##################
 
 	public function upgrade(array $stepParams = [])
