@@ -11,14 +11,14 @@ class Setup extends AbstractSetup
 
     // ################################ CHECK REQUIREMENTS ####################
 
-//    public function checkRequirements(&$errors = [], &$warnings = [])
-//    {
-//        $vendorDirectory = sprintf("%s/vendor", $this->addOn->getAddOnDirectory());
-//        if (!file_exists($vendorDirectory))
-//        {
-//            $errors[] = "vendor folder does not exist - cannot proceed with addon install";
-//        }
-//    }
+    public function checkRequirements(&$errors = [], &$warnings = [])
+    {
+        $vendorDirectory = sprintf("%s/vendor", $this->addOn->getAddOnDirectory());
+        if (!file_exists($vendorDirectory))
+        {
+            $errors[] = "vendor folder does not exist - cannot proceed with addon install";
+        }
+    }
 
     // ################################ INSTALLATION ###########################
 
@@ -45,6 +45,7 @@ class Setup extends AbstractSetup
             $table->addColumn('group_id', 'int');
             $table->addKey('subscriber_id');
             $table->addKey('group_id');
+            $table->addKey(['subscriber_id', 'group_id']);
         });
 
         $this->schemaManager()->createTable('xf_newsletters_group', function (Create $table) {

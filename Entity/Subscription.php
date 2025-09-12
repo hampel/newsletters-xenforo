@@ -17,15 +17,17 @@ class Subscription extends Entity
         ];
 
         $structure->relations = [
-            'Subscribers' => [
+            'Subscriber' => [
                 'entity' => 'Hampel\Newsletters:Subscriber',
-                'type' => self::TO_MANY,
-                'conditions' => 'subscriber_id'
+                'type' => self::TO_ONE,
+                'conditions' => 'subscriber_id',
+                'primary' => true,
             ],
-            'Groups' => [
+            'Group' => [
                 'entity' => 'Hampel\Newsletters:Group',
-                'type' => self::TO_MANY,
-                'conditions' => 'group_id'
+                'type' => self::TO_ONE,
+                'conditions' => 'group_id',
+                'primary' => true,
             ],
         ];
 
