@@ -12,5 +12,6 @@
         "Git Repository": "https://github.com/hampel/newsletters-xenforo"
     },
     "require": [],
-    "icon": "fa-newspaper"
+    "icon": "fa-newspaper",
+    "composer_autoload": "vendor/composer"
 }
