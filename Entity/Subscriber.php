@@ -14,7 +14,7 @@ class Subscriber extends Entity
             'subscriber_id' => ['type' => self::UINT, 'autoIncrement' => true, 'nullable' => true],
             'email' => ['type' => self::STR, 'maxLength' => 120, 'required' => true],
             'user_id' => ['type' => self::UINT, 'nullable' => true],
-            'status' => ['type' => self::STR, 'required' => true, 'allowedValues' => ['active', 'email_confirm', 'unsubscribed', 'email_bounce', 'spam_complaint', 'rejected', 'disabled']],
+            'status' => ['type' => self::STR, 'required' => true, 'allowedValues' => ['active', 'invalid', 'unsubscribed']],
             'created_date' => ['type' => self::UINT, 'default' => \XF::$time],
             'source' => ['type' => self::STR, 'required' => true, 'allowedValues' => ['import', 'webform', 'user']],
             'signup_date' => ['type' => self::UINT, 'required' => true],

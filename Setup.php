@@ -27,7 +27,7 @@ class Setup extends AbstractSetup
             $table->addColumn('subscriber_id', 'int')->unsigned()->autoIncrement();
             $table->addColumn('email', 'varchar', 120);
             $table->addColumn('user_id', 'int')->unsigned()->nullable();
-            $table->addColumn('status', 'enum')->values(['active', 'email_confirm', 'unsubscribed', 'email_bounce', 'spam_complaint', 'rejected', 'disabled']);
+            $table->addColumn('status', 'enum')->values(['active', 'invalid', 'unsubscribed']);
             $table->addColumn('created_date', 'int')->unsigned();
             $table->addColumn('source', 'enum')->values(['import', 'webform', 'user']);
             $table->addColumn('signup_date', 'int')->unsigned();

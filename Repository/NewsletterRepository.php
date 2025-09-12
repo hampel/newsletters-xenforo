@@ -2,6 +2,7 @@
 
 use Hampel\Newsletters\Entity\Group;
 use Hampel\Newsletters\Entity\Subscriber;
+use XF\Entity\User;
 use XF\Mvc\Entity\AbstractCollection;
 use XF\Mvc\Entity\Repository;
 
@@ -20,12 +21,8 @@ class NewsletterRepository extends Repository
     {
         return [
             'active' => \XF::phrase('newsletters_active'),
-            'email_confirm' => \XF::phrase('newsletters_email_confirm'),
+            'invalid' => \XF::phrase('newsletters_invalid'),
             'unsubscribed' => \XF::phrase('newsletters_unsubscribed'),
-            'email_bounce' => \XF::phrase('newsletters_email_bounce'),
-            'spam_complaint' => \XF::phrase('newsletters_spam_complaint'),
-            'rejected' => \XF::phrase('newsletters_rejected'),
-            'disabled' => \XF::phrase('newsletters_disabled'),
         ];
     }
 
@@ -38,6 +35,15 @@ class NewsletterRepository extends Repository
             ->fetch();
     }
 
+    public function getAllGroupsKeyedByType(array $with = []) : AbstractCollection
+    {
+        return $this->finder(Group::class)
+            ->with($with)
+            ->order('name', 'ASC')
+            ->fetch()
+            ->groupBy('type');
+    }
+
     public function getGroupTypes() : array
     {
         return [
@@ -46,4 +52,17 @@ class NewsletterRepository extends Repository
             'joinable' => \XF::phrase('newsletters_joinable'),
         ];
     }
+
+    public function findOrCreateSubscriberByEmail(string $email) : ?Subscriber
+    {
+        $subscriber = \XF::em()->findOne(Subscriber::class, ['email' => $email], 'User');
+        if (!$subscriber)
+        {
+            $subscriber = \XF::em()->create(Subscriber::class);
+            $subscriber->email = $email;
+        }
+
+        return $subscriber;
+    }
+
 }

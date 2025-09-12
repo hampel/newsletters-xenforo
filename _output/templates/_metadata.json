@@ -1,4 +1,14 @@
 {
+    "admin/newsletters_groups_add.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "869088a2e130d8f81ad2227cb829b4c4"
+    },
+    "admin/newsletters_groups_list.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "8ebe4620f11aa2cfb42fdfea7de71922"
+    },
     "admin/newsletters_subscribers_list.html": {
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",

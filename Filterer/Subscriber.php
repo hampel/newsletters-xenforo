@@ -1,9 +1,7 @@
 <?php namespace Hampel\Newsletters\Filterer;
 
-use XF\Entity\User;
 use XF\Filterer\AbstractFilterer;
 use XF\Finder\PhraseMapFinder;
-use XF\Finder\UserFinder;
 use XF\Mvc\Entity\Finder;
 
 class Subscriber extends AbstractFilterer
