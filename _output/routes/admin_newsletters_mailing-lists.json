@@ -1,0 +1,11 @@
+{
+    "route_type": "admin",
+    "route_prefix": "newsletters",
+    "sub_name": "mailing-lists",
+    "format": "mailing-lists/:int<list_id>/",
+    "build_class": "",
+    "build_method": "",
+    "controller": "Hampel\\Newsletters:MailingLists",
+    "context": "newslettersMailingLists",
+    "action_prefix": ""
+}

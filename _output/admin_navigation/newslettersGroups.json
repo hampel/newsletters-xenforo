@@ -1,0 +1,10 @@
+{
+    "parent_navigation_id": "newsletters",
+    "display_order": 2,
+    "link": "newsletters/groups",
+    "icon": "",
+    "admin_permission_id": "newsletters",
+    "debug_only": false,
+    "development_only": false,
+    "hide_no_children": false
+}

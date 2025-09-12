@@ -1,0 +1,59 @@
+<xf:if is="$group.isInsert()">
+	<xf:title>{{ phrase('newsletters_add_group') }}</xf:title>
+<xf:else />
+	<xf:title>{{ phrase('newsletters_edit_group') }}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$group.isUpdate()">
+	<xf:button href="{{ link('newsletters/groups/delete', $group) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+<xf:form action="{{ link('newsletters/groups/save', $group) }}" ajax="true" data-force-flash-message="on" class="block">
+	<div class="block-container">
+		<div class="block-body">
+				
+			<xf:textboxrow name="name" value="{$group}"
+				label="{{ phrase('newsletters_group_name') }}">
+			</xf:textboxrow>
+			
+			<xf:if is="$group.isInsert()">
+				<xf:radiorow name="type" value="{$group}" label="{{ phrase('newsletters_group_type') }}">
+
+					<xf:option value="manual"
+							   label="{{ phrase('newsletters_group_type_manual') }}" 
+							   hint="{{ phrase('newsletters_group_type_manual_hint') }}"/>
+					<xf:option value="usergroup"
+							   label="{{ phrase('newsletters_group_type_usergroup') }}"
+							   hint="{{ phrase('newsletters_group_type_usergroup_hint') }}">
+
+						<xf:select name="criteria[usergroups]" size="20" multiple="true" value="{$group.criteria.usergroups}">
+							<xf:foreach loop="$userGroups" key="$userGroupId" value="$userGroupTitle">
+								<xf:option value="{$userGroupId}">{$userGroupTitle}</xf:option>
+							</xf:foreach>
+						</xf:select>					
+
+					</xf:option>
+					<xf:option value="joinable"
+							   label="{{ phrase('newsletters_group_type_joinable') }}"
+							   hint="{{ phrase('newsletters_group_type_joinable_hint') }}" />
+				</xf:radiorow>		
+			<xf:else />
+				<xf:formrow label="{{ phrase('newsletters_group_type') }}">
+					{{ $group.type|to_upper('ucfirst') }}
+				</xf:formrow>
+				<xf:hiddenval name="type">{$group.type}</xf:hiddenval>
+				
+				<xf:if is="$group.type == 'usergroup'">
+					<xf:selectrow name="criteria[usergroups]" size="20" multiple="true" value="{$group.criteria.usergroups}" label="{{ phrase('newsletters_usergroups') }}">
+						<xf:foreach loop="$userGroups" key="$userGroupId" value="$userGroupTitle">
+							<xf:option value="{$userGroupId}">{$userGroupTitle}</xf:option>
+						</xf:foreach>
+					</xf:selectrow>					
+				</xf:if>
+			</xf:if>
+	
+			
+		</div>
+		<xf:submitrow icon="save" sticky="true" />
+	</div>
+</xf:form>

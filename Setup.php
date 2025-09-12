@@ -2,6 +2,7 @@
 
 namespace Hampel\Newsletters;
 
+use Hampel\Newsletters\Job\SubscriberRebuild;
 use XF\AddOn\AbstractSetup;
 use XF\Db\Schema\Create;
 
@@ -50,6 +51,7 @@ class Setup extends AbstractSetup
             $table->addColumn('group_id', 'int')->unsigned()->autoIncrement();
             $table->addColumn('name', 'varchar', 128);
             $table->addColumn('type', 'enum')->values(['manual', 'usergroup', 'joinable']);
+            $table->addColumn('criteria', 'mediumblob');
             $table->addColumn('created_date', 'int')->unsigned();
         });
 

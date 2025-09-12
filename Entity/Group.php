@@ -15,8 +15,11 @@ class Group extends Entity
         $structure->columns = [
             'group_id' => ['type' => self::UINT, 'autoIncrement' => true, 'nullable' => true],
             'name' => ['type' => self::STR, 'maxLength' => 128, 'required' => true],
-            'type' => ['type' => self::STR, 'required' => true, 'allowedValues' => ['manual', 'usergroup', 'joinable']],
-            'created_date' => ['type' => self::UINT, 'required' => true],
+            'type' => ['type' => self::STR,
+                       'allowedValues' => ['', 'manual', 'usergroup', 'joinable']
+            ],
+            'criteria' => ['type' => self::JSON_ARRAY, 'default' => []],
+            'created_date' => ['type' => self::UINT, 'default' => \XF::$time],
         ];
 
         $structure->relations = [

@@ -1,0 +1,1 @@
+Users added automatically to mailing groups based on being a member of a specific usergroup. Use the Ctrl key to select multiple groups.
