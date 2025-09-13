@@ -1,0 +1,1 @@
+Users added automatically to mailing groups based on some criteria defined by the specified updater class. <br />Updater must extend <b>Hampel\Newsletters\Service\AbstractGroupUpdaterService</b>

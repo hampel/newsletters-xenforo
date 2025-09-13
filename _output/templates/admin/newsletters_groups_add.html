@@ -22,6 +22,11 @@
 					<xf:option value="manual"
 							   label="{{ phrase('newsletters_group_type_manual') }}" 
 							   hint="{{ phrase('newsletters_group_type_manual_hint') }}"/>
+
+					<xf:option value="joinable"
+							   label="{{ phrase('newsletters_group_type_joinable') }}"
+							   hint="{{ phrase('newsletters_group_type_joinable_hint') }}" />					
+					
 					<xf:option value="usergroup"
 							   label="{{ phrase('newsletters_group_type_usergroup') }}"
 							   hint="{{ phrase('newsletters_group_type_usergroup_hint') }}">
@@ -33,10 +38,23 @@
 						</xf:select>					
 
 					</xf:option>
-					<xf:option value="joinable"
-							   label="{{ phrase('newsletters_group_type_joinable') }}"
-							   hint="{{ phrase('newsletters_group_type_joinable_hint') }}" />
-				</xf:radiorow>		
+					
+					<xf:option value="programmatic"
+							   label="{{ phrase('newsletters_group_type_programmatic') }}"
+							   hint="{{ phrase('newsletters_group_type_programmatic_hint') }}">
+
+						<xf:textbox name="criteria[class]" value="{$group.criteria.class}" placeholder="{{ phrase('newsletters_updater_class') }}" size="20" />
+						
+						<xf:textarea name="criteria[parameters]" value="{$group.criteria.parameters}" placeholder="{{ phrase('newsletters_updater_parameters') }}" autosize="true" />
+									
+						<xf:afterhint>{{ phrase('newsletters_updater_hint') }}</xf:afterhint>
+
+					</xf:option>
+					
+				</xf:radiorow>
+				
+				<xf:macro id="addon_macros::addon_edit" arg-addOnId="{{ $group.addon_id ?: 'Hampel/Newsletters' }}" />				
+				
 			<xf:else />
 				<xf:formrow label="{{ phrase('newsletters_group_type') }}">
 					{{ $group.type|to_upper('ucfirst') }}

@@ -1,7 +1,8 @@
 <?php namespace Hampel\Newsletters\Admin\Controller;
 
 use Hampel\Newsletters\Entity\Group;
-use Hampel\Newsletters\Service\UpdateGroupService;
+use Hampel\Newsletters\Service\AbstractGroupUpdaterService;
+use Hampel\Newsletters\Service\UsergroupGroupUpdaterService;
 use XF\Mvc\FormAction;
 use XF\Mvc\ParameterBag;
 use XF\Repository\UserGroupRepository;
@@ -87,16 +88,39 @@ class Groups extends AbstractBaseController
             {
                 $form->logError(\XF::phrase('newsletters_please_select_at_least_one_usergroup'), 'criteria[usergroups]');
             }
+
+            if ($input['type'] == 'programmatic')
+            {
+                \XF::dump($input);
+                if (empty($input['criteria']['class']))
+                {
+                    $form->logError(\XF::phrase('newsletters_please_enter_updater_class'), 'criteria[class]');
+                }
+                else
+                {
+                    if (!class_exists($input['criteria']['class']) || !is_subclass_of($input['criteria']['class'], AbstractGroupUpdaterService::class))
+                    {
+                        $form->logError(\XF::phrase('newsletters_invalid_updater_class'), 'criteria[class]');
+                    }
+                }
+            }
         });
 
         $form->basicEntitySave($group, $input);
 
-        $updateService = $this->service(UpdateGroupService::class);
+        $updateService = $this->service(UsergroupGroupUpdaterService::class);
 
         $form->complete(function (FormAction $form) use ($group, $updateService)
         {
-            $updateService->setGroup($group);
-            $updateService->updateGroupMembers();
+            if ($group->type == 'usergroup')
+            {
+                $updateService->setGroup($group);
+                $updateService->updateGroupMembers();
+            }
+            else
+            {
+                // TODO: handle other group types
+            }
         });
 
         return $form;

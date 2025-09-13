@@ -1,0 +1,1 @@
+Invalid updater class - class does not exist or is not a subclass of AbstractGroupUpdaterService

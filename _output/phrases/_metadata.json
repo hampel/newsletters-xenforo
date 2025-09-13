@@ -59,6 +59,12 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "9851adcbf8570b7c667d1a99d541b29b"
     },
+    "newsletters_addon.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "304cb904a1f04e9ae0b7cc5c2c02f7a6"
+    },
     "newsletters_all.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -107,6 +113,18 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "2dedf021745609426ffe37a73d5bb23c"
     },
+    "newsletters_group_type_programmatic.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "da757f3f9cec4ed07ae44a210119b1cc"
+    },
+    "newsletters_group_type_programmatic_hint.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "418d15b87504d92f64fff3f69af6438e"
+    },
     "newsletters_group_type_usergroup.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -137,6 +155,12 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "4bbb8f967da6d1a610596d7257179c2b"
     },
+    "newsletters_invalid_updater_class.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "d17dc1a9b6d4e3cdf58b0ae95d1e5899"
+    },
     "newsletters_joinable.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -148,6 +172,12 @@
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "e1ba155a9f2e8c3be94020eef32a0301"
+    },
+    "newsletters_please_enter_updater_class.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "7b085944def8d8b328676e9d0ba52ca5"
     },
     "newsletters_please_select_a_group_type.txt": {
         "global_cache": false,
@@ -196,6 +226,24 @@
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "fdc7aa92ecb714c25019e988c09aeffa"
+    },
+    "newsletters_updater_class.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "9bd81329febf6efe22788e03ddeaf0af"
+    },
+    "newsletters_updater_hint.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "9850a9cd670b73d1901d6030b3de0d17"
+    },
+    "newsletters_updater_parameters.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "8d3790fd88d0df84866c326b567563bb"
     },
     "newsletters_user.txt": {
         "global_cache": false,

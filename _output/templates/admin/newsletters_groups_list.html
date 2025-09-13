@@ -32,7 +32,7 @@
 									<xf:datarow
 										label="{$group.name}"
 										hint="(hint)"
-										explain="(explain)"
+										explain="{{ phrase('newsletters_addon') }}: {$group.addon_id}"
 										href="{{ link('newsletters/groups/edit', $group) }}"
 										delete="{{ link('newsletters/groups/delete', $group) }}"
 										data-xf-click="overlay" >

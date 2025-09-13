@@ -51,9 +51,10 @@ class Setup extends AbstractSetup
         $this->schemaManager()->createTable('xf_newsletters_group', function (Create $table) {
             $table->addColumn('group_id', 'int')->unsigned()->autoIncrement();
             $table->addColumn('name', 'varchar', 128);
-            $table->addColumn('type', 'enum')->values(['manual', 'usergroup', 'joinable']);
+            $table->addColumn('type', 'enum')->values(['manual', 'joinable', 'usergroup', 'programmatic']);
             $table->addColumn('criteria', 'mediumblob');
             $table->addColumn('created_date', 'int')->unsigned();
+            $table->addColumn('addon_id', 'varbinary', 50);
         });
 
         $this->schemaManager()->createTable('xf_newsletters_map', function (Create $table) {
