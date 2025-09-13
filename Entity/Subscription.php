@@ -18,13 +18,13 @@ class Subscription extends Entity
 
         $structure->relations = [
             'Subscriber' => [
-                'entity' => 'Hampel\Newsletters:Subscriber',
+                'entity' => Subscriber::class,
                 'type' => self::TO_ONE,
                 'conditions' => 'subscriber_id',
                 'primary' => true,
             ],
             'Group' => [
-                'entity' => 'Hampel\Newsletters:Group',
+                'entity' => Group::class,
                 'type' => self::TO_ONE,
                 'conditions' => 'group_id',
                 'primary' => true,

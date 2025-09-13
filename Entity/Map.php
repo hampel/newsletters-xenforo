@@ -18,13 +18,13 @@ class Map extends Entity
 
         $structure->relations = [
             'Groups' => [
-                'entity' => 'Hampel\Newsletters:Group',
+                'entity' => Group::class,
                 'type' => self::TO_MANY,
                 'conditions' => 'group_id'
             ],
 
             'MailingLists' => [
-                'entity' => 'Hampel\Newsletters:MailingList',
+                'entity' => MailingList::class,
                 'type' => self::TO_MANY,
                 'conditions' => 'list_id'
             ],

@@ -18,7 +18,7 @@ class MailingList extends Entity
 
         $structure->relations = [
             'GroupMaps' => [
-                'entity' => 'Hampel\Newsletters:Map',
+                'entity' => Map::class,
                 'type' => self::TO_MANY,
                 'conditions' => 'list_id'
             ],

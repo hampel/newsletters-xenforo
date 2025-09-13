@@ -24,12 +24,12 @@ class Group extends Entity
 
         $structure->relations = [
             'Subscriptions' => [
-                'entity' => 'Hampel\Newsletters:Subscription',
+                'entity' => Subscription::class,
                 'type' => self::TO_MANY,
                 'conditions' => 'group_id'
             ],
             'ListMaps' => [
-                'entity' => 'Hampel\Newsletters:Map',
+                'entity' => Map::class,
                 'type' => self::TO_MANY,
                 'conditions' => 'group_id'
             ],

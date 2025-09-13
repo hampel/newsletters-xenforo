@@ -1,5 +1,6 @@
 <?php namespace Hampel\Newsletters\Entity;
 
+use XF\Entity\User;
 use XF\Mvc\Entity\Entity;
 use XF\Mvc\Entity\Structure;
 
@@ -25,13 +26,13 @@ class Subscriber extends Entity
 
         $structure->relations = [
             'User' => [
-                'entity' => 'XF:User',
+                'entity' => User::class,
                 'type' => self::TO_ONE,
                 'conditions' => 'user_id',
                 'primary' => true
             ],
             'Subscriptions' => [
-                'entity' => 'Hampel\Newsletters:Subscription',
+                'entity' => Subscription::class,
                 'type' => self::TO_MANY,
                 'conditions' => 'subscriber_id'
             ],

@@ -11,7 +11,16 @@
     "extra_urls": {
         "Git Repository": "https://github.com/hampel/newsletters-xenforo"
     },
-    "require": [],
+    "require": {
+        "php": [
+            "8.1.2",
+            "PHP 8.1.2+"
+        ],
+        "XF": [
+            "2030000",
+            "XenForo 2.3.0+"
+        ]
+    },
     "icon": "fa-newspaper",
     "composer_autoload": "vendor/composer"
 }
