@@ -1,10 +1,10 @@
 <?php namespace Hampel\Newsletters;
 
-use XF\Service\User\DeleteCleanUp;
+use XF\Service\User\DeleteCleanUpService;
 
 class Listener
 {
-    public static function userDeleteCleanInit(DeleteCleanUp $deleteService, array &$deletes)
+    public static function userDeleteCleanInit(DeleteCleanUpService $deleteService, array &$deletes)
     {
         // TODO: is there anything else we need to clean up if a user is deleted?
 
