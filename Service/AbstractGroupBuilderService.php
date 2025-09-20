@@ -65,15 +65,15 @@ abstract class AbstractGroupBuilderService extends AbstractService
 
     public function update() : int
     {
-        $this->updateGroupMembers();
-        $count = $this->countGroupMembers();
+        $this->updateSubscriptions();
+        $count = $this->countSubscriptions();
         $this->group->subscriber_count = $count;
         $this->group->save();
 
         return $count;
     }
 
-    abstract protected function updateGroupMembers();
+    abstract protected function updateSubscriptions();
 
     protected function findOrCreateSubscription($subscriber_id) : Subscription
     {
@@ -108,7 +108,7 @@ abstract class AbstractGroupBuilderService extends AbstractService
         return $this->findOne(Subscriber::class, ['email', $email]);
     }
 
-    public function countGroupMembers() : int
+    public function countSubscriptions() : int
     {
         return $this->finder(Subscription::class)
             ->with('Subscriber', true)

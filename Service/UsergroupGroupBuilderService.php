@@ -18,7 +18,7 @@ class UsergroupGroupBuilderService extends AbstractGroupBuilderService
         $this->usergroups = $this->parameters['usergroups'];
     }
 
-    public function updateGroupMembers()
+    public function updateSubscriptions()
     {
         foreach ($this->getSubscriptions() as $subscription)
         {
