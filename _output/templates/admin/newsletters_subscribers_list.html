@@ -1,34 +1,34 @@
 <xf:title>{{ phrase('newsletters_subscribers') }}</xf:title>
 
-<div class="block">
-	<div class="block-outer">
-		<div class="block-outer-main">
-			<xf:button class="button--link menuTrigger" data-xf-click="menu" aria-expanded="false" aria-haspopup="true">
-				{{ phrase('newsletters_status:') }} {{ $statusOptions.{$linkParams.status} ?: phrase('newsletters_all') }}
-			</xf:button>
+<xf:if is="$subscribers is not empty">
+	<div class="block">
+		<div class="block-outer">
+			<div class="block-outer-main">
+				<xf:button class="button--link menuTrigger" data-xf-click="menu" aria-expanded="false" aria-haspopup="true">
+					{{ phrase('newsletters_status:') }} {{ $statusOptions.{$linkParams.status} ?: phrase('newsletters_all') }}
+				</xf:button>
 
-			<div class="menu" data-menu="menu" aria-hidden="true">
-				<div class="menu-content">
-					<h3 class="menu-header">{{ phrase('newsletters_status...') }}</h3>
-					<a href="{{ link('newsletters/subscribers', null, {'status': 'all'}) }}" class="menu-linkRow {{ $linkParams.status == 'all' ? 'is-selected' : '' }}">{{ phrase('newsletters_all') }}</a>
-					<xf:foreach loop="$statusOptions" key="$statusKey" value="$statusName">
-						<a href="{{ link('newsletters/subscribers', null, {'status': $statusKey}) }}"
-						   class="menu-linkRow {{ $linkParams.status == $statusKey ? 'is-selected' : '' }}">
-							{$statusName}
-						</a>
-					</xf:foreach>
+				<div class="menu" data-menu="menu" aria-hidden="true">
+					<div class="menu-content">
+						<h3 class="menu-header">{{ phrase('newsletters_status...') }}</h3>
+						<a href="{{ link('newsletters/subscribers', null, {'status': 'all'}) }}" class="menu-linkRow {{ $linkParams.status == 'all' ? 'is-selected' : '' }}">{{ phrase('newsletters_all') }}</a>
+						<xf:foreach loop="$statusOptions" key="$statusKey" value="$statusName">
+							<a href="{{ link('newsletters/subscribers', null, {'status': $statusKey}) }}"
+							   class="menu-linkRow {{ $linkParams.status == $statusKey ? 'is-selected' : '' }}">
+								{$statusName}
+							</a>
+						</xf:foreach>
+					</div>
 				</div>
-			</div>
-		</div>			
-		<xf:macro id="filter_macros::quick_filter" arg-key="subscribers" 
-				  arg-ajax="{{ link('newsletters/subscribers', null, {'status': $linkParams.status}) }}"
-				  arg-class="block-outer-opposite" />
-	</div>
-	<div class="block-container">
-		<xf:if is="$subscribers is not empty">
+			</div>			
+			<xf:macro id="filter_macros::quick_filter" arg-key="subscribers" 
+					  arg-ajax="{{ link('newsletters/subscribers', null, {'status': $linkParams.status}) }}"
+					  arg-class="block-outer-opposite" />
+		</div>
+		<div class="block-container">
 			<div class="block-body">
 				<xf:datalist data-xf-init="responsive-data-list">
-					<xf:datarow rowtype="header">
+					<xf:datarow rowtype="header" rowclass="dataList-row--noHover">
 						<xf:cell>{{ phrase('newsletters_subscriber') }}</xf:cell>
 						<xf:cell class="dataList-cell--min">{{ phrase('newsletters_status') }}</xf:cell>
 						<xf:cell class="dataList-cell--min">{{ phrase('newsletters_source') }}</xf:cell>
@@ -62,11 +62,12 @@
 			<div class="block-footer block-footer--split">
 				<span class="block-footer-counter">{{ display_totals($subscribers, $total) }}</span>
 			</div>
-			<xf:else />
-			<div class="block-body block-row">{{ phrase('no_results_found') }}</div>
-		</xf:if>
+		</div>
+		<xf:pagenav page="{$page}" perpage="{$perPage}" total="{$total}"
+					link="newsletters/subscribers" 
+					params="{$linkParams}"
+					wrapperclass="js-filterHide block-outer block-outer--after" />
 	</div>
-	<xf:pagenav page="{$page}" perpage="{$perPage}" total="{$total}"
-		link="newsletters/subscribers" params="{$linkParams}"
-		wrapperclass="block-outer block-outer--after" />
-</div>
+<xf:else />
+	<div class="blockMessage">{{ phrase('no_results_found') }}</div>	
+</xf:if>

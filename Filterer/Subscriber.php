@@ -1,7 +1,6 @@
 <?php namespace Hampel\Newsletters\Filterer;
 
 use XF\Filterer\AbstractFilterer;
-use XF\Finder\PhraseMapFinder;
 use XF\Mvc\Entity\Finder;
 
 class Subscriber extends AbstractFilterer
@@ -80,7 +79,7 @@ class Subscriber extends AbstractFilterer
 
     protected function applyFilter(string $filterName, &$value, &$displayValue): bool
     {
-        /** @var PhraseMapFinder $finder */
+        /** @var \Hampel\Newsletters\Entity\Subscriber $finder */
         $finder = $this->finder;
 
         switch ($filterName)

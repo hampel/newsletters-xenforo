@@ -35,6 +35,20 @@ class Subscribers extends AbstractBaseController
         $filterer = $this->setupSubscriberFilterer();
         $finder = $filterer->apply()->limitByPage($page, $perPage);
 
+        $filter = $this->filter('_xfFilter', [
+            'text' => 'str',
+            'prefix' => 'bool'
+        ]);
+        if (strlen($filter['text']))
+        {
+            $conditions = [
+                ['email', 'LIKE', $finder->escapeLike($filter['text'], $filter['prefix'] ? '?%' : '%?%')],
+                ['User.username', 'LIKE', $finder->escapeLike($filter['text'], $filter['prefix'] ? '?%' : '%?%')],
+                ['description', 'LIKE', $finder->escapeLike($filter['text'], $filter['prefix'] ? '?%' : '%?%')],
+            ];
+            $finder->whereOr($conditions);
+        }
+
         $linkParams = $filterer->getLinkParams();
 
         $total = $finder->total();
