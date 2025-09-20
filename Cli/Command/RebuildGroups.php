@@ -1,11 +1,12 @@
 <?php namespace Hampel\Newsletters\Cli\Command;
 
 use Hampel\Newsletters\Entity\Group;
+use Hampel\Newsletters\Entity\Subscription;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RebuildNewsletterGroups extends Command
+class RebuildGroups extends Command
 {
 	protected function configure()
 	{
@@ -17,6 +18,26 @@ class RebuildNewsletterGroups extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
     {
         // TODO: make this into a job?
+
+        $output->writeln('<info>Cleaning up orphaned subscriptions</info>');
+
+        $subscriptions = \XF::finder(Subscription::class)
+            ->with(['Subscriber', 'Group'])
+            ->whereOr([
+                ['Subscriber.subscriber_id', null],
+                ['Group.group_id', null]
+            ])
+            ->fetch();
+
+        $count = 0;
+        foreach ($subscriptions as $subscription)
+        {
+            $subscription->delete();
+            $count++;
+        }
+
+        $output->writeln("Removed {$count} orphaned subscriptions");
+        $output->writeln('');
 
         $output->writeln('<info>Rebuilding newsletter groups</info>');
         $output->writeln('');
