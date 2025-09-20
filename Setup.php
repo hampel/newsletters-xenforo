@@ -56,7 +56,7 @@ class Setup extends AbstractSetup
             $table->addColumn('name', 'varchar', 50);
             $table->addColumn('description', 'varchar', 255);
             $table->addColumn('type', 'enum')->values(['manual', 'joinable', 'usergroup', 'programmatic']);
-            $table->addColumn('builder_key', 'varbinary', 50)->nullable();
+            $table->addColumn('builder_id', 'varbinary', 50)->nullable();
             $table->addColumn('parameters', 'mediumblob');
             $table->addColumn('subscriber_count', 'int')->unsigned();
             $table->addKey('type');
@@ -64,12 +64,10 @@ class Setup extends AbstractSetup
         });
 
         $this->schemaManager()->createTable('xf_newsletters_group_builder', function (Create $table) {
-            $table->addColumn('builder_id', 'int')->unsigned()->autoIncrement();
-            $table->addColumn('builder_key', 'varbinary', 50);
+            $table->addColumn('builder_id', 'varbinary', 50)->primaryKey();
             $table->addColumn('name', 'varchar', 50);
             $table->addColumn('class', 'varchar', 100);
             $table->addColumn('addon_id', 'varbinary', 50);
-            $table->addUniqueKey('builder_key');
             $table->addKey('addon_id');
         });
 
