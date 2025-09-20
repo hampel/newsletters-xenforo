@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use XF\Cli\Command\JobRunnerTrait;
 
-class RebuildSubscribersFromUsers extends Command
+class RebuildSubscribers extends Command
 {
     use JobRunnerTrait;
 
