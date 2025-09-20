@@ -1,0 +1,11 @@
+{
+    "route_type": "admin",
+    "route_prefix": "newsletters",
+    "sub_name": "group-builders",
+    "format": "group-builderss/:str<builder_id>/",
+    "build_class": "",
+    "build_method": "",
+    "controller": "Hampel\\Newsletters:GroupBuilders",
+    "context": "newslettersGroupBuilders",
+    "action_prefix": ""
+}

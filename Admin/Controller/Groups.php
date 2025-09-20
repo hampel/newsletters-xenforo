@@ -1,8 +1,8 @@
 <?php namespace Hampel\Newsletters\Admin\Controller;
 
 use Hampel\Newsletters\Entity\Group;
-use Hampel\Newsletters\Service\AbstractGroupUpdaterService;
-use Hampel\Newsletters\Service\UsergroupGroupUpdaterService;
+use Hampel\Newsletters\Entity\Subscription;
+use XF\ControllerPlugin\DeletePlugin;
 use XF\Mvc\FormAction;
 use XF\Mvc\ParameterBag;
 use XF\Repository\UserGroupRepository;
@@ -31,10 +31,11 @@ class Groups extends AbstractBaseController
         }
 
         $groups = $this->repo->getGroups();
+        $groupedGroups = array_replace(array_flip(['joinable', 'manual', 'usergroup', 'programmatic']), $groups->groupBy('type'));
 
         $viewParams = [
-            'groups' => $groups->groupBy('type'),
-            'total' => $groups->count(),
+            'groups' => $groupedGroups,
+            'totalGroups' => $groups->count(),
             'typeOptions' => $this->repo->getGroupTypes(),
         ];
 
@@ -45,14 +46,20 @@ class Groups extends AbstractBaseController
     {
         $userGroupRepo = $this->app->repository(UserGroupRepository::class);
         $userGroups = $userGroupRepo->getUserGroupTitlePairs();
+        $builders = $this->repo->getBuilderTitlePairs();
+
+        $devMode = $this->app->config('development');
 
         $viewParams = [
             'group' => $group,
             'typeOptions' => $this->repo->getGroupTypes(),
             'userGroups' => $userGroups,
+            'builders' => $builders,
+            'userGroupsSelected' => $group['parameters']['usergroups'] ?? [],
+            'devMode' => $devMode['enabled'] ?? false,
         ];
 
-        return $this->view('Hampel\Nesletters:Groups\Add', 'newsletters_groups_add', $viewParams);
+        return $this->view('Hampel\Nesletters:Groups\Edit', 'newsletters_groups_edit', $viewParams);
     }
 
     public function actionAdd(ParameterBag $params)
@@ -73,53 +80,23 @@ class Groups extends AbstractBaseController
 
         $input = $this->filter([
             'name' => 'str',
-            'type' => 'string',
-            'criteria' => 'array',
+            'description' => 'str',
+            'type' => 'str',
+            'builder_id' => 'str',
+            'parameters' => 'json-array'
         ]);
-
-        $form->validate(function (FormAction $form) use ($input)
-        {
-            if (empty($input['type']))
-            {
-                $form->logError(\XF::phrase('newsletters_please_select_a_group_type'), 'type');
-            }
-
-            if ($input['type'] == 'usergroup' && empty($input['criteria']['usergroups']))
-            {
-                $form->logError(\XF::phrase('newsletters_please_select_at_least_one_usergroup'), 'criteria[usergroups]');
-            }
-
-            if ($input['type'] == 'programmatic')
-            {
-                \XF::dump($input);
-                if (empty($input['criteria']['class']))
-                {
-                    $form->logError(\XF::phrase('newsletters_please_enter_updater_class'), 'criteria[class]');
-                }
-                else
-                {
-                    if (!class_exists($input['criteria']['class']) || !is_subclass_of($input['criteria']['class'], AbstractGroupUpdaterService::class))
-                    {
-                        $form->logError(\XF::phrase('newsletters_invalid_updater_class'), 'criteria[class]');
-                    }
-                }
-            }
-        });
 
         $form->basicEntitySave($group, $input);
 
-        $updateService = $this->service(UsergroupGroupUpdaterService::class);
-
-        $form->complete(function (FormAction $form) use ($group, $updateService)
+        $form->complete(function (FormAction $form) use ($group)
         {
-            if ($group->type == 'usergroup')
+            if ($group->builder_id)
             {
-                $updateService->setGroup($group);
-                $updateService->updateGroupMembers();
+                $group->updateSubscribers();
             }
             else
             {
-                // TODO: handle other group types
+                //  TODO: handle other group types
             }
         });
 
@@ -142,6 +119,41 @@ class Groups extends AbstractBaseController
         $this->groupSaveProcess($group)->run();
 
         return $this->redirect($this->buildLink('newsletters/groups') . $this->buildLinkHash($group->group_id));
+
+    }
+
+    public function actionDelete(ParameterBag $params)
+    {
+        $group = $this->assertGroupExists($params->group_id);
+
+        /** @var DeletePlugin $plugin */
+        $plugin = $this->plugin(DeletePlugin::class);
+        return $plugin->actionDelete(
+            $group,
+            $this->buildLink('newsletters/groups/delete', $group),
+            $this->buildLink('newsletters/groups/edit', $group),
+            $this->buildLink('newsletters/groups'),
+            $group->name
+        );
+    }
+
+    public function actionSubscribers(ParameterBag $params)
+    {
+        $this->setSectionContext('newslettersGroups');
+
+        $group = $this->assertGroupExists($params->group_id);
+        $subscriptions = $group->Subscriptions->filter(function (Subscription $subscription): bool
+        {
+            return $subscription->Subscriber->status == 'active';
+        });
+
+        $viewParams = [
+            'group' => $group,
+            'subscriptions' => $subscriptions,
+            'totalSubscriptions' => $subscriptions->count(),
+        ];
+
+        return $this->view('Hampel\Nesletters:Groups\Subscriptions', 'newsletters_groups_subscriptions', $viewParams);
 
     }
 

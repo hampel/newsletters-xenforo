@@ -5,6 +5,12 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "d04ccf61aef8e1107d25b84cf8e37d55"
     },
+    "admin_navigation.newslettersGroupBuilders.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "6eb4e6c209f3df02da29543123d8115c"
+    },
     "admin_navigation.newslettersGroups.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -59,6 +65,18 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "9851adcbf8570b7c667d1a99d541b29b"
     },
+    "newsletters_add_group_builder.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "87d5153e002b21110a47deb1c8da0259"
+    },
+    "newsletters_add_groupbuilder.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "b5859b52c593d24526a0a5458039a083"
+    },
     "newsletters_addon.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -71,11 +89,71 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "b1c94ca2fbc3e78fc30069c8d0f01680"
     },
+    "newsletters_builder.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "2bd4a59bb5a32ded63b98eea556ca87a"
+    },
+    "newsletters_builder_ids_must_be_unique.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "c492655ca8f16860dfcbc66f6a8b92b2"
+    },
+    "newsletters_builder_parameters_hint.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "a9f19e83727d9bf4c8f2456011d518ea"
+    },
+    "newsletters_builders.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "a7aabedfa51c621af1c82ac19da57a93"
+    },
+    "newsletters_class_does_not_exist_x.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "3dce4ba5a5d6752438d4724eac0fd34b"
+    },
+    "newsletters_class_must_be_subclass_of_x.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "a04d07e3a9f99c308956af6851d99acf"
+    },
     "newsletters_edit_group.txt": {
         "global_cache": false,
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "3bd11b19e48893c0e79521359ee42211"
+    },
+    "newsletters_edit_groupbuilder.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "bcf0986907055f18ce75cd9ea330a5f5"
+    },
+    "newsletters_edit_subscriber.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "1b05e91056ca187a5d25b1fa7344ed12"
+    },
+    "newsletters_group_description.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "b5a7adde1af5c87d7fd797b6245c2a39"
+    },
+    "newsletters_group_description_hint.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "55e6c86c63bd18084f3f8152000dbd3d"
     },
     "newsletters_group_name.txt": {
         "global_cache": false,
@@ -123,7 +201,7 @@
         "global_cache": false,
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
-        "hash": "418d15b87504d92f64fff3f69af6438e"
+        "hash": "0eb46b3a82de8b8028f7ec7bcd3af480"
     },
     "newsletters_group_type_usergroup.txt": {
         "global_cache": false,
@@ -136,6 +214,36 @@
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "741803fd593c3a65f1d2e28e2b2e186c"
+    },
+    "newsletters_groupbuilder_class.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "bae3e140e50bb74cb2875c3b87517f47"
+    },
+    "newsletters_groupbuilder_class_explain.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "792800cf3cc324feff1333151bb534ef"
+    },
+    "newsletters_groupbuilder_key.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "1f5fce8fe6a005581fd11733936eed3b"
+    },
+    "newsletters_groupbuilder_name.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "49ee3087348e8d44e1feda1917443987"
+    },
+    "newsletters_groupbuilders.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "ddacdbfdc2dfb110c0cfcd9ac36350b7"
     },
     "newsletters_groups.txt": {
         "global_cache": false,
@@ -173,11 +281,35 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "e1ba155a9f2e8c3be94020eef32a0301"
     },
+    "newsletters_no_groups.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "35f560e99d8ce3ca70cf519c3273da81"
+    },
+    "newsletters_parameters.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "3225a10b07f1580f10dee4abc3779e6c"
+    },
     "newsletters_please_enter_updater_class.txt": {
         "global_cache": false,
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "7b085944def8d8b328676e9d0ba52ca5"
+    },
+    "newsletters_please_enter_valid_builder_id.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "732d0689e6e322839be010358507fbe3"
+    },
+    "newsletters_please_select_a_builder.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "c3215f24389ee8ef3905c95b9342db0b"
     },
     "newsletters_please_select_a_group_type.txt": {
         "global_cache": false,
@@ -189,7 +321,13 @@
         "global_cache": false,
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
-        "hash": "fbf6ac832a7b123d2a44588678657330"
+        "hash": "9a8ebe3ae71d64210bc3043d020a6901"
+    },
+    "newsletters_programmatic.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "da757f3f9cec4ed07ae44a210119b1cc"
     },
     "newsletters_signup_date.txt": {
         "global_cache": false,
@@ -215,11 +353,77 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "992c4a5b4628d8ebf671cf460254ee81"
     },
+    "newsletters_subscriber_created.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "0eceeb45861f9585dd7a97a3e36f85c6"
+    },
+    "newsletters_subscriber_description.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "b5a7adde1af5c87d7fd797b6245c2a39"
+    },
+    "newsletters_subscriber_email.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "ce8ae9da5b7cd6c3df2929543a9af92d"
+    },
+    "newsletters_subscriber_groups.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "a37ede293936e29279ed543129451ec3"
+    },
+    "newsletters_subscriber_signup.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "80919be0413cba91ea1c240ca12ee13a"
+    },
+    "newsletters_subscriber_status.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "ec53a8c4f07baed5d8825072c89799be"
+    },
+    "newsletters_subscriber_user_id_does_not_match_email.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "11a26a573583dc4ec093dd3fa1116852"
+    },
+    "newsletters_subscriber_user_not_linked.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "5c3e42e62a988b7496b072607f53d772"
+    },
+    "newsletters_subscriber_username.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "f6039d44b29456b20f8f373155ae4973"
+    },
     "newsletters_subscribers.txt": {
         "global_cache": false,
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "39f7a3e2b56e9bfd753ba6325533a127"
+    },
+    "newsletters_subscribers_count_x.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "5f24df7f840a508ad6d288271e579579"
+    },
+    "newsletters_subscribers_to_group_x.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "7230ec5ac3d125188871f5a4320d38f3"
     },
     "newsletters_unsubscribed.txt": {
         "global_cache": false,
@@ -232,12 +436,6 @@
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "9bd81329febf6efe22788e03ddeaf0af"
-    },
-    "newsletters_updater_hint.txt": {
-        "global_cache": false,
-        "version_id": 1000011,
-        "version_string": "1.0.0 Alpha 1",
-        "hash": "9850a9cd670b73d1901d6030b3de0d17"
     },
     "newsletters_updater_parameters.txt": {
         "global_cache": false,

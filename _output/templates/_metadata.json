@@ -1,18 +1,38 @@
 {
-    "admin/newsletters_groups_add.html": {
+    "admin/newsletters_groupbuilders_edit.html": {
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
-        "hash": "5895cd7980fa986507a2dd9842273cd1"
+        "hash": "5329f17323f7c41e03db019d70970bd3"
+    },
+    "admin/newsletters_groupbuilders_list.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "9d258f33fdd5a0bd1d2272706911788a"
+    },
+    "admin/newsletters_groups_edit.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "2b48e60ddc4c64a84baea07983c9bf81"
     },
     "admin/newsletters_groups_list.html": {
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
-        "hash": "12c8fafae77a845581e9b0d5ecaac872"
+        "hash": "9352d358e5d0350808706b0d43880873"
+    },
+    "admin/newsletters_groups_subscriptions.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "77ad1e6bd46f7592443eaf198d13bcfc"
+    },
+    "admin/newsletters_subscribers_edit.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "2d39e3d4f7cb7ee95ee751c9dfd46d1e"
     },
     "admin/newsletters_subscribers_list.html": {
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
-        "hash": "9d1c7b7cf3cab45c3112e892505abe15"
+        "hash": "cffa57221968939222226d3db34368fd"
     },
     "email/hampel_newsletter_email.html": {
         "version_id": 1000011,

@@ -2,7 +2,9 @@
 
 namespace Hampel\Newsletters;
 
+use Hampel\Newsletters\Entity\GroupBuilder;
 use Hampel\Newsletters\Job\SubscriberRebuild;
+use Hampel\Newsletters\Service\UsergroupGroupBuilderService;
 use XF\AddOn\AbstractSetup;
 use XF\Db\Schema\Create;
 
@@ -28,6 +30,7 @@ class Setup extends AbstractSetup
             $table->addColumn('subscriber_id', 'int')->unsigned()->autoIncrement();
             $table->addColumn('email', 'varchar', 120);
             $table->addColumn('user_id', 'int')->unsigned()->nullable();
+            $table->addColumn('description', 'varchar', 255);
             $table->addColumn('status', 'enum')->values(['active', 'invalid', 'unsubscribed']);
             $table->addColumn('created_date', 'int')->unsigned();
             $table->addColumn('source', 'enum')->values(['import', 'webform', 'user']);
@@ -50,11 +53,24 @@ class Setup extends AbstractSetup
 
         $this->schemaManager()->createTable('xf_newsletters_group', function (Create $table) {
             $table->addColumn('group_id', 'int')->unsigned()->autoIncrement();
-            $table->addColumn('name', 'varchar', 128);
+            $table->addColumn('name', 'varchar', 50);
+            $table->addColumn('description', 'varchar', 255);
             $table->addColumn('type', 'enum')->values(['manual', 'joinable', 'usergroup', 'programmatic']);
-            $table->addColumn('criteria', 'mediumblob');
-            $table->addColumn('created_date', 'int')->unsigned();
+            $table->addColumn('builder_key', 'varbinary', 50)->nullable();
+            $table->addColumn('parameters', 'mediumblob');
+            $table->addColumn('subscriber_count', 'int')->unsigned();
+            $table->addKey('type');
+            $table->addKey('builder_id');
+        });
+
+        $this->schemaManager()->createTable('xf_newsletters_group_builder', function (Create $table) {
+            $table->addColumn('builder_id', 'int')->unsigned()->autoIncrement();
+            $table->addColumn('builder_key', 'varbinary', 50);
+            $table->addColumn('name', 'varchar', 50);
+            $table->addColumn('class', 'varchar', 100);
             $table->addColumn('addon_id', 'varbinary', 50);
+            $table->addUniqueKey('builder_key');
+            $table->addKey('addon_id');
         });
 
         $this->schemaManager()->createTable('xf_newsletters_map', function (Create $table) {
@@ -77,11 +93,14 @@ class Setup extends AbstractSetup
 
     public function postInstall(array &$stateChanges)
     {
+        $this->addGroupBuilder();
+
         // rebuild subscribers
         $this->app->jobManager()->enqueueUnique(
             'newslettersSubscriberRebuild',
             SubscriberRebuild::class
         );
+
     }
 
     // ################################ UPGRADE ##################
@@ -107,7 +126,23 @@ class Setup extends AbstractSetup
         $this->schemaManager()->dropTable('xf_newsletters_subscriber');
         $this->schemaManager()->dropTable('xf_newsletters_subscription');
         $this->schemaManager()->dropTable('xf_newsletters_group');
+        $this->schemaManager()->dropTable('xf_newsletters_group_builder');
         $this->schemaManager()->dropTable('xf_newsletters_map');
         $this->schemaManager()->dropTable('xf_newsletters_list');
 	}
+
+    // ################################ ADDITIONAL FUNCTIONS ############################
+
+    public function addGroupBuilder()
+    {
+        $this->db()->insert(
+            'xf_newsletters_group_builder',
+            [
+                'builder_id' => 'usergroup',
+                'name' => 'Usergroups',
+                'class' => UsergroupGroupBuilderService::class,
+                'addon_id' => 'Hampel/Newsletters',
+            ]
+        );
+    }
 }

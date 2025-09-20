@@ -1,0 +1,1 @@
+Updater class must be a subclass of {class}

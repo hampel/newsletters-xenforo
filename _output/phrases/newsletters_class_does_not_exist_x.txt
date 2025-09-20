@@ -1,0 +1,1 @@
+Updater class does not exist: {class}

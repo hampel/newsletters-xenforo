@@ -1,0 +1,53 @@
+<xf:title>{{ phrase('newsletters_edit_subscriber') }}</xf:title>
+
+<xf:pageaction if="$subscriber.isUpdate()">
+	<xf:button href="{{ link('newsletters/subscribers/delete', $subscriber) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+<xf:form action="{{ link('newsletters/subscribers/save', $subscriber) }}" ajax="true" data-force-flash-message="on" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			
+			<xf:formrow label="{{ phrase('newsletters_subscriber_email') }}">
+				{{ $subscriber.email }}
+			</xf:formrow>				
+		
+			<xf:formrow label="{{ phrase('newsletters_subscriber_username') }}">
+				<xf:username user="$subscriber.User" href="" defaultname="{{ phrase('newsletters_subscriber_user_not_linked') }}"/>
+			</xf:formrow>				
+
+			<xf:formrow label="{{ phrase('newsletters_subscriber_description') }}">
+				{{ $subscriber.description }}
+			</xf:formrow>				
+
+			<xf:selectrow name="status" value="{{$subscriber}}"
+				label="{{ phrase('newsletters_subscriber_status') }}">
+				<xf:options source="{$statusOptions}" />
+			</xf:selectrow>
+			
+			<xf:formrow label="{{ phrase('newsletters_subscriber_created') }}">
+				{{ date_time($subscriber.created_date) }}
+			</xf:formrow>					
+					
+			<xf:formrow label="{{ phrase('newsletters_subscriber_signup') }}">
+				{{ date_time($subscriber.signup_date) }}
+			</xf:formrow>	
+			
+			<xf:formrow label="{{ phrase('newsletters_subscriber_groups') }}">
+				<xf:if contentcheck="true">
+					<ul>
+						<xf:contentcheck>
+							<xf:foreach loop="{$subscriber.Subscriptions}" value="$subscription">
+								<li>{$subscription.Group.name}</li>
+							</xf:foreach>
+						</xf:contentcheck>
+					</ul>
+				<xf:else />
+					{{ phrase('newsletters_no_groups') }}
+				</xf:if>
+			</xf:formrow>				
+						
+		</div>
+		<xf:submitrow icon="save" sticky="true" />
+	</div>
+</xf:form>

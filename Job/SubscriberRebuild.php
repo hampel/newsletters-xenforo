@@ -1,5 +1,6 @@
 <?php namespace Hampel\Newsletters\Job;
 
+use XF\Entity\User;
 use XF\Job\AbstractRebuildJob;
 
 class SubscriberRebuild extends AbstractRebuildJob
@@ -23,7 +24,7 @@ class SubscriberRebuild extends AbstractRebuildJob
     protected function rebuildById($id)
     {
         /** @var \XF\Entity\User $user */
-        $user = $this->app->em()->find(\XF\Entity\User::class, $id, ['NewsletterSubscriber']);
+        $user = $this->app->em()->find(User::class, $id, ['NewsletterSubscriber']);
         if (!$user)
         {
             return;

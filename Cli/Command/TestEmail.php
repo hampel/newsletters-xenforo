@@ -12,7 +12,7 @@ class TestEmail extends AbstractCommand
 	protected function configure()
 	{
 		$this
-			->setName('newsletter:test')
+			->setName('newsletters:test')
             ->addArgument(
                 'thread_id',
                 InputArgument::REQUIRED,

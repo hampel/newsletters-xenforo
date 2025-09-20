@@ -30,15 +30,19 @@ class User extends XFCP_User
             $subscriber = $this->em()->create(Subscriber::class);
         }
 
+        // over-ride existing subscriber information because user registration trumps previously imported subscribers
         $subscriber->bulkSet([
-            'user_id' => $this->user_id,
             'email' => $this->email,
+            'user_id' => $this->user_id,
+            'description' => "User: {$this->username}",
             'status' => $this->newsletter_status,
             'signup_date' => $this->register_date,
             'source' => 'user',
         ]);
 
         $subscriber->save();
+
+        // TODO: update user change log?
 
         return $subscriber;
     }

@@ -32,7 +32,7 @@ class MailerLiteImport extends Command
                 'b',
                 InputOption::VALUE_NONE,
                 'Import bounced users'
-            )        ;
+            );
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
@@ -53,6 +53,7 @@ class MailerLiteImport extends Command
         $requiredHeaders = [
             'Subscriber',
             'Subscribed',
+            'Name',
         ];
 
         foreach ($requiredHeaders as $required)
@@ -64,7 +65,23 @@ class MailerLiteImport extends Command
             }
         }
 
-        $count = 0;
+        if ($input->getOption('unsubscribed'))
+        {
+            $status = 'unsubscribed';
+        }
+        elseif ($input->getOption('bounced'))
+        {
+            $status = 'invalid';
+        }
+        else
+        {
+            $status = 'active';
+        }
+
+        $output->writeln("<info>Importing {$status} subscribers from MailerLite</info>");
+
+        $imported = 0;
+        $skipped = 0;
 
         $records = $csv->getRecords();
 
@@ -72,41 +89,35 @@ class MailerLiteImport extends Command
         {
             $email = $record['Subscriber'];
 
-            $output->writeln("<info>Importing subscriber #{$count}: {$email}</info>");
-
-            $user = null;
-
-            if ($input->getOption('unsubscribed'))
+            $name = $record['Name'];
+            if (!empty($record['Last name']))
             {
-                $status = 'unsubscribed';
+                $name .= " {$record['Last name']}";
             }
-            elseif ($input->getOption('bounced'))
+
+            $nameOrEmail = $name ?? $email;
+
+            $subscriber = \XF::repository(NewsletterRepository::class)->findOrCreateSubscriberByEmail($email);
+            if ($subscriber->isInsert())
             {
-                $status = 'invalid';
+                $subscriber->status = $status;
+                $subscriber->source = 'import';
+                $subscriber->description = "MailerLite import: {$nameOrEmail}";
+                $subscriber->signup_date = Carbon::createFromFormat("Y-m-d H:i:s", $record['Subscribed'])->timestamp;;
+                $subscriber->save();
+
+                $output->writeln("Imported subscriber: {$nameOrEmail}");
+                $imported++;
             }
             else
             {
-                $status = 'active';
+                $output->writeln("Skipped existing subscriber: {$nameOrEmail}");
+                $skipped++;
             }
 
-            $signupDate = Carbon::createFromFormat("Y-m-d H:i:s", $record['Subscribed'])->timestamp;
-
-            $subscriber = \XF::repository(NewsletterRepository::class)->findOrCreateSubscriberByEmail($email);
-            $subscriber->status = $subscriber->status ?? $status;
-            $subscriber->source = $subscriber->source ?? 'import';
-
-            // set signup date to whatever is earliest
-            if (!$subscriber->signup_date || $subscriber->signup_date > $signupDate)
-            {
-                $subscriber->signup_date = $signupDate;
-            }
-
-            $subscriber->save();
-
-            $count++;
         }
 
-        $output->writeln("<info>{$count} subscribers imported</info>");
+        $output->writeln("<info>{$imported} subscribers imported, {$skipped} existing subscribers skipped</info>");
 
         return Command::SUCCESS;
     }

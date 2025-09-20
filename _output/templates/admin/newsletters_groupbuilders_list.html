@@ -1,0 +1,54 @@
+<xf:title>{{ phrase('newsletters_groupbuilders') }}</xf:title>
+
+<xf:pageaction>
+	<xf:button href="{{ link('newsletters/group-builders/add') }}" icon="add">
+		{{ phrase('newsletters_add_group_builder') }}
+	</xf:button>
+</xf:pageaction>
+
+<div class="block">
+	<div class="block-outer">
+		<xf:macro id="filter_macros::quick_filter" arg-key="group-builder" arg-class="block-outer-opposite" />
+	</div>
+	<div class="block-container">
+		<xf:if is="$builders is not empty">
+			<div class="block-body">
+				
+				<xf:datalist>				
+					
+					<xf:foreach loop="$builders" key="$addOnId" value="$addonBuilders">	
+						<tbody class="dataList-rowGroup">
+							<xf:datarow rowtype="subsection" rowclass="dataList-row--noHover">
+								<xf:cell colspan="3">
+									<xf:if is="{{ {$addOns.{$addOnId}} }}">
+										{$addOns.{$addOnId}.title}
+									<xf:else />
+										{{ phrase('newsletters_builders') }}
+									</xf:if>
+								</xf:cell>								
+							</xf:datarow>
+							<xf:foreach loop="$addonBuilders" value="$builder">
+								<xf:datarow>
+									<xf:cell hash="{$builder.builder_id}"
+										href="{{ link('newsletters/group-builders/edit', $builder) }}"
+										dir="auto">
+										{$builder.name|split_long(25)}
+									</xf:cell>
+									<xf:cell href="{{ link('newsletters/group-builders/edit', $builder) }}" dir="auto">
+										{$builder.class|split_long(25)}
+									</xf:cell>
+									<xf:delete href="{{ link('newsletters/group-builders/delete', $builder) }}" />
+								</xf:datarow>
+							</xf:foreach>
+						</tbody>
+					</xf:foreach>
+				</xf:datalist>
+			</div>
+			<div class="block-footer">
+				<span class="block-footer-counter">{{ display_totals($builders) }}</span>
+			</div>
+		<xf:else />
+			<div class="block-body block-row">{{ phrase('no_results_found') }}</div>
+		</xf:if>
+	</div>	
+</div>

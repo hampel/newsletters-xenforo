@@ -1,7 +1,9 @@
 <?php namespace Hampel\Newsletters\Repository;
 
 use Hampel\Newsletters\Entity\Group;
+use Hampel\Newsletters\Entity\GroupBuilder;
 use Hampel\Newsletters\Entity\Subscriber;
+use XF\Entity\AddOn;
 use XF\Entity\User;
 use XF\Mvc\Entity\AbstractCollection;
 use XF\Mvc\Entity\Repository;
@@ -35,6 +37,27 @@ class NewsletterRepository extends Repository
             ->fetch();
     }
 
+    public function getBuilders(string $addon_id = null, array $with = []) : AbstractCollection
+    {
+        return $this->finder(GroupBuilder::class)
+            ->with($with)
+            ->whereIf($addon_id != null, ['addon_id', $addon_id], [])
+            ->order('name', 'ASC')
+            ->fetch();
+    }
+
+    public function findBuildersForList(bool $excludeInternal = true)
+    {
+        return $this->finder(GroupBuilder::class)
+            ->whereIf($excludeInternal, ['addon_id', '!=', 'Hampel/Newsletters'], [])
+            ->order('name');
+    }
+
+    public function getBuilderTitlePairs()
+    {
+        return $this->findBuildersForList()->fetch()->pluckNamed('name', 'builder_id');
+    }
+
     public function getAllGroupsKeyedByType(array $with = []) : AbstractCollection
     {
         return $this->finder(Group::class)
@@ -44,12 +67,18 @@ class NewsletterRepository extends Repository
             ->groupBy('type');
     }
 
+    public function getAddonsForGroupBuilders(array $addon_ids) : AbstractCollection
+    {
+        return $this->finder(AddOn::class)->where('addon_id', '=', $addon_ids)->fetch();
+    }
+
     public function getGroupTypes() : array
     {
         return [
+            'joinable' => \XF::phrase('newsletters_joinable'),
             'manual' => \XF::phrase('newsletters_manual'),
             'usergroup' => \XF::phrase('newsletters_usergroup'),
-            'joinable' => \XF::phrase('newsletters_joinable'),
+            'programmatic' => \XF::phrase('newsletters_programmatic'),
         ];
     }
 
@@ -63,6 +92,16 @@ class NewsletterRepository extends Repository
         }
 
         return $subscriber;
+    }
+
+    public function deleteAllSubscribers()
+    {
+        $this->db()->emptyTable('xf_newsletters_subscriber');
+    }
+
+    public function deleteAllSubscriptions()
+    {
+        $this->db()->emptyTable('xf_newsletters_subscription');
     }
 
 }

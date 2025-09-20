@@ -1,0 +1,104 @@
+<xf:if is="$group.isInsert()">
+	<xf:title>{{ phrase('newsletters_add_group') }}</xf:title>
+<xf:else />
+	<xf:title>{{ phrase('newsletters_edit_group') }}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$group.isUpdate()">
+	<xf:button href="{{ link('newsletters/groups/delete', $group) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+
+
+<xf:form action="{{ link('newsletters/groups/save', $group) }}" ajax="true" data-force-flash-message="on" class="block">
+	<div class="block-container">
+		<div class="block-body">
+				
+			<xf:textboxrow name="name" value="{$group}"
+				label="{{ phrase('newsletters_group_name') }}" />
+			
+
+			<xf:textboxrow name="description" value="{$group}"
+				label="{{ phrase('newsletters_group_description') }}"
+				explain="{{ phrase('newsletters_group_description_hint') }}" />
+			
+			<xf:if is="$group.isInsert()">
+				<xf:radiorow name="type" value="{$group}" label="{{ phrase('newsletters_group_type') }}">
+
+					<xf:option value="joinable"
+							   label="{{ phrase('newsletters_group_type_joinable') }}"
+							   hint="{{ phrase('newsletters_group_type_joinable_hint') }}" />							
+					
+					<xf:option value="manual"
+							   label="{{ phrase('newsletters_group_type_manual') }}" 
+							   hint="{{ phrase('newsletters_group_type_manual_hint') }}"/>			
+					
+					<xf:option value="usergroup"
+							   label="{{ phrase('newsletters_group_type_usergroup') }}"
+							   hint="{{ phrase('newsletters_group_type_usergroup_hint') }}">
+
+						<xf:select name="parameters[usergroups]" size="20" multiple="true" 
+								   value="{$userGroupsSelected}">
+							<xf:options source="$userGroups" />
+						</xf:select>					
+
+					</xf:option>
+					
+					<xf:if is="$builders && $devMode">
+						<xf:option value="programmatic"
+								   label="{{ phrase('newsletters_group_type_programmatic') }}"
+								   hint="{{ phrase('newsletters_group_type_programmatic_hint') }}">
+
+							<xf:select name="builder_id" value="{$group}">
+								<xf:options source="$builders" />
+							</xf:select>	
+
+							<xf:textarea name="parameters[params]" 
+										 value="{$group|json}" 
+										 placeholder="{{ phrase('newsletters_updater_parameters') }}" 
+										 autosize="true" />
+
+							<xf:afterhint>{{ phrase('newsletters_builder_parameters_hint') }}</xf:afterhint>
+
+						</xf:option>
+					</xf:if>					
+				</xf:radiorow>
+							
+			<xf:else />
+				<xf:formrow label="{{ phrase('newsletters_group_type') }}">
+					{{ $group.type|to_upper('ucfirst') }}
+				</xf:formrow>
+				
+				<xf:hiddenval name="type">{$group.type}</xf:hiddenval>
+			
+				<xf:if is="$group.type == 'usergroup'">
+					
+					<xf:selectrow name="parameters[usergroups]" size="20" multiple="true" 
+								  value="{$userGroupsSelected}"
+								  label="{{ phrase('newsletters_usergroups') }}">
+						<xf:options source="$userGroups" />
+					</xf:selectrow>
+					
+				<xf:elseif is="$group.type == 'programmatic'" />
+					
+					<xf:selectrow name="builder_id" 
+								  value="{$group}"
+								  label="{{ phrase('newsletters_builder') }}">
+						<xf:options source="$builders" />
+					</xf:selectrow>	
+
+					<xf:textarearow name="parameters[params]" 
+									value="{$group.parameters.params|json}" 
+									label="{{ phrase('newsletters_parameters') }}"
+									placeholder="{{ phrase('newsletters_updater_parameters') }}" 
+									autosize="true" />
+					
+				</xf:if>
+				
+			</xf:if>
+	
+			
+		</div>
+		<xf:submitrow icon="save" sticky="true" />
+	</div>
+</xf:form>

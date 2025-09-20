@@ -1,1 +1,0 @@
-Class example: <b>AddOn\Path\To\ClassName</b>

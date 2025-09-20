@@ -1,0 +1,1 @@
+For joinable groups, this will be displayed to the user

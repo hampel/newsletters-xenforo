@@ -1,0 +1,39 @@
+<xf:if is="$builder.isInsert()">
+	<xf:title>{{ phrase('newsletters_add_groupbuilder') }}</xf:title>
+<xf:else />
+	<xf:title>{{ phrase('newsletters_edit_groupbuilder') }}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$builder.isUpdate()">
+	<xf:button href="{{ link('newsletters/group-builders/delete', $builder) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+
+
+<xf:form action="{{ link('newsletters/group-builders/save', $builder) }}" ajax="true" data-force-flash-message="on" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			
+			<xf:if is="$builder.exists()">
+				<xf:formrow label="{{ phrase('newsletters_groupbuilder_key') }}">
+					{{ $builder.builder_id }}
+				</xf:formrow>				
+			<xf:else />
+				<xf:textboxrow name="builder_id" value="{$builder}"
+					label="{{ phrase('newsletters_groupbuilder_key') }}" />			
+			</xf:if>
+				
+			<xf:textboxrow name="name" value="{$builder}"
+				label="{{ phrase('newsletters_groupbuilder_name') }}" />
+			
+
+			<xf:textboxrow name="class" value="{$builder}"
+				label="{{ phrase('newsletters_groupbuilder_class') }}"
+				explain="{{ phrase('newsletters_groupbuilder_class_explain') }}" />
+			
+			<xf:macro id="addon_macros::addon_edit" arg-addOnId="{$builder.addon_id}" />				
+			
+		</div>
+		<xf:submitrow icon="save" sticky="true" />
+	</div>
+</xf:form>
