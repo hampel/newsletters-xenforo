@@ -4,6 +4,7 @@ use Hampel\Newsletters\Entity\Group;
 use Hampel\Newsletters\Entity\GroupBuilder;
 use Hampel\Newsletters\Service\AbstractGroupBuilderService;
 use Hampel\Newsletters\Service\UsergroupGroupBuilderService;
+use XF\ControllerPlugin\DeletePlugin;
 use XF\Mvc\FormAction;
 use XF\Mvc\ParameterBag;
 use XF\Repository\AddOnRepository;
@@ -103,6 +104,21 @@ class GroupBuilders extends AbstractBaseController
 
         return $this->redirect($this->buildLink('newsletters/group-builders') . $this->buildLinkHash($builder->builder_id));
 
+    }
+
+    public function actionDelete(ParameterBag $params)
+    {
+        $builder = $this->assertBuilderExists($params->builder_id);
+
+        /** @var DeletePlugin $plugin */
+        $plugin = $this->plugin(DeletePlugin::class);
+        return $plugin->actionDelete(
+            $builder,
+            $this->buildLink('newsletters/group-builders/delete', $builder),
+            $this->buildLink('newsletters/group-builders/edit', $builder),
+            $this->buildLink('newsletters/group-builders'),
+            $builder->name
+        );
     }
 
     // ----------------------------------------------------------------
