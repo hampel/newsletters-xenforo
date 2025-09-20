@@ -2,7 +2,6 @@
 
 namespace Hampel\Newsletters;
 
-use Hampel\Newsletters\Entity\GroupBuilder;
 use Hampel\Newsletters\Job\SubscriberRebuild;
 use Hampel\Newsletters\Service\UsergroupGroupBuilderService;
 use XF\AddOn\AbstractSetup;
