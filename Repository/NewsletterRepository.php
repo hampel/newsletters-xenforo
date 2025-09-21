@@ -3,6 +3,7 @@
 use Hampel\Newsletters\Entity\Group;
 use Hampel\Newsletters\Entity\GroupBuilder;
 use Hampel\Newsletters\Entity\Subscriber;
+use Hampel\Newsletters\Entity\Subscription;
 use XF\Entity\AddOn;
 use XF\Entity\User;
 use XF\Mvc\Entity\AbstractCollection;
@@ -92,6 +93,46 @@ class NewsletterRepository extends Repository
         }
 
         return $subscriber;
+    }
+
+    public function deleteSubscribersOfDeletedUsers() : int
+    {
+        $subscribers = $this->finder(Subscriber::class)
+            ->where('user_id', '!=', null)
+            ->with('User')
+            ->fetch();
+
+        $count = 0;
+        foreach ($subscribers as $subscriber)
+        {
+            if (!$subscriber->User)
+            {
+                $subscriber->delete();
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    public function deleteInvalidSubscriptions() : int
+    {
+        $subscriptions = $this->finder(Subscription::class)
+            ->with(['Subscriber', 'Group'])
+            ->whereOr([
+                ['Subscriber.subscriber_id', null],
+                ['Group.group_id', null]
+            ])
+            ->fetch();
+
+        $count = 0;
+        foreach ($subscriptions as $subscription)
+        {
+            $subscription->delete();
+            $count++;
+        }
+
+        return $count;
     }
 
     public function deleteAllSubscribers()

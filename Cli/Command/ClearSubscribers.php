@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
-class ClearSubscribers extends Command
+class ClearSubscribers extends AbstractLoggingCommand
 {
 	protected function configure()
 	{
@@ -50,7 +50,10 @@ class ClearSubscribers extends Command
             }
         }
 
+        $this->notice('Deleting all subscribers');
         $repo->deleteAllSubscribers();
+
+        $this->notice('Deleting all subscriptions');
         $repo->deleteAllSubscriptions();
 
         return Command::SUCCESS;

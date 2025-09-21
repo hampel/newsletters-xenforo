@@ -35,7 +35,7 @@ class GroupBuilders extends AbstractBaseController
 
         $builders = $this->repo->getBuilders();
 
-        $addOns = $this->repository(AddOnRepository::class)->findAddOnsForList()->fetch();
+        $addOns = $this->repository(AddOnRepository::class)->findActiveAddOnsForList()->fetch();
 
         $viewParams = [
             'builders' => $builders->groupBy('addon_id'),
@@ -48,11 +48,8 @@ class GroupBuilders extends AbstractBaseController
 
     protected function builderAddEdit(GroupBuilder $builder)
     {
-        $addOns = $this->repository(AddOnRepository::class)->findAddOnsForList()->fetch();
-
         $viewParams = [
             'builder' => $builder,
-            'addOns' => $addOns,
         ];
 
         return $this->view('Hampel\Nesletters:GroupBuilders\Edit', 'newsletters_groupbuilders_edit', $viewParams);

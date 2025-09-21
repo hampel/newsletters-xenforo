@@ -1,0 +1,17 @@
+{
+    "cron_class": "Hampel\\Newsletters\\Cron\\Newsletters",
+    "cron_method": "RebuildSubscriptions",
+    "run_rules": {
+        "day_type": "dom",
+        "dom": [
+            -1
+        ],
+        "hours": [
+            16
+        ],
+        "minutes": [
+            35
+        ]
+    },
+    "active": true
+}

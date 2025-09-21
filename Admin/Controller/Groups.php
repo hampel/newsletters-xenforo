@@ -92,7 +92,7 @@ class Groups extends AbstractBaseController
         {
             if ($group->builder_id)
             {
-                $group->updateSubscribers();
+                $group->updateSubscriptions();
             }
             else
             {

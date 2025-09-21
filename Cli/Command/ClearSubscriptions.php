@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
-class ClearSubscriptions extends Command
+class ClearSubscriptions extends AbstractLoggingCommand
 {
 	protected function configure()
 	{
@@ -48,6 +48,7 @@ class ClearSubscriptions extends Command
             }
         }
 
+        $this->notice("Deleting all subscriptions");
         $repo->deleteAllSubscriptions();
 
         return Command::SUCCESS;

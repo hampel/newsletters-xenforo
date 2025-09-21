@@ -14,6 +14,11 @@ class GroupBuilder extends Entity
             throw new \LogicException('GroupBuilder must be saved before creating a group');
         }
 
+        if (!$this->isActive())
+        {
+            throw new \LogicException('Cannot create group for inactive Addon ' . $this->addon_id);
+        }
+
         $group = $this->em()->create(Group::class);
         $group->name = $name;
         $group->description = $description;
@@ -37,9 +42,19 @@ class GroupBuilder extends Entity
             throw new \LogicException('Updater class must be a subclass of ' .  AbstractGroupBuilderService::class);
         }
 
+        if (!$this->isActive())
+        {
+            throw new \LogicException('Cannot create updater for inactive Addon ' . $this->addon_id);
+        }
+
         $class = $this->app()->extendClass($this->class);
         /** @var AbstractGroupBuilderService $updater */
         return new $class($this->app());
+    }
+
+    public function isActive()
+    {
+        return ($this->AddOn ? $this->AddOn->active : false);
     }
 
     protected function _postDelete()
@@ -107,7 +122,7 @@ class GroupBuilder extends Entity
                 'type' => self::TO_MANY,
                 'conditions' => 'builder_id',
             ],
-            'Addon' => [
+            'AddOn' => [
                 'entity' => AddOn::class,
                 'type' => self::TO_ONE,
                 'conditions' => 'addon_id',

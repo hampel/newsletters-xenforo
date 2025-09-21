@@ -29,6 +29,18 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "a92306241681794f23b952ba6e2e1e3f"
     },
+    "cron_entry.newslettersSubscribers.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "097aa6eb04d027aff82839e44af4707d"
+    },
+    "cron_entry.newslettersSubscription.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "146796bcb89ed777a011e114770d2ee2"
+    },
     "hampel_newsletter_email_intro.txt": {
         "global_cache": false,
         "version_id": 1000011,

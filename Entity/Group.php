@@ -34,7 +34,7 @@ class Group extends Entity
         }
     }
 
-    public function updateSubscribers() : int
+    public function updateSubscriptions() : int
     {
         $updater = $this->createUpdater();
         $updater->setGroup($this);
@@ -103,6 +103,11 @@ class Group extends Entity
                     $this->error(array_shift($errors), 'parameters');
                 }
             }
+        }
+        else
+        {
+            // make sure builder_id is not set - otherwise could be blank
+            $this->builder_id = null;
         }
     }
 
