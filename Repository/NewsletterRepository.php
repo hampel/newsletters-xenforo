@@ -2,6 +2,7 @@
 
 use Hampel\Newsletters\Entity\Group;
 use Hampel\Newsletters\Entity\GroupBuilder;
+use Hampel\Newsletters\Entity\MailingList;
 use Hampel\Newsletters\Entity\Subscriber;
 use Hampel\Newsletters\Entity\Subscription;
 use XF\Entity\AddOn;
@@ -68,9 +69,28 @@ class NewsletterRepository extends Repository
             ->groupBy('type');
     }
 
+    public function findGroupsForList()
+    {
+        return $this->finder(Group::class)
+            ->order('name');
+    }
+
+    public function getGroupTitlePairs()
+    {
+        return $this->findGroupsForList()->fetch()->pluckNamed('name', 'group_id', 'type');
+    }
+
     public function getAddonsForGroupBuilders(array $addon_ids) : AbstractCollection
     {
         return $this->finder(AddOn::class)->where('addon_id', '=', $addon_ids)->fetch();
+    }
+
+    public function getLists(array $with = []) : AbstractCollection
+    {
+        return $this->finder(MailingList::class)
+            ->with($with)
+            ->order('name', 'ASC')
+            ->fetch();
     }
 
     public function getGroupTypes() : array

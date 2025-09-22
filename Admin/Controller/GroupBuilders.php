@@ -1,14 +1,9 @@
 <?php namespace Hampel\Newsletters\Admin\Controller;
 
-use Hampel\Newsletters\Entity\Group;
 use Hampel\Newsletters\Entity\GroupBuilder;
-use Hampel\Newsletters\Service\AbstractGroupBuilderService;
-use Hampel\Newsletters\Service\UsergroupGroupBuilderService;
 use XF\ControllerPlugin\DeletePlugin;
-use XF\Mvc\FormAction;
 use XF\Mvc\ParameterBag;
 use XF\Repository\AddOnRepository;
-use XF\Repository\UserGroupRepository;
 
 class GroupBuilders extends AbstractBaseController
 {
@@ -30,7 +25,7 @@ class GroupBuilders extends AbstractBaseController
         {
             $builder = $this->assertBuilderExists($params->builder_id);
 
-            return $this->redirect($this->buildLink('group-builders/edit', $builder));
+            return $this->redirect($this->buildLink('newsletters/group-builders/edit', $builder));
         }
 
         $builders = $this->repo->getBuilders();
@@ -43,7 +38,7 @@ class GroupBuilders extends AbstractBaseController
             'addOns' => $addOns,
         ];
 
-        return $this->view('Hampel\Nesletters:GroupBuilders\List', 'newsletters_groupbuilders_list', $viewParams);
+        return $this->view('Hampel\Newsletters:GroupBuilders\List', 'newsletters_groupbuilders_list', $viewParams);
     }
 
     protected function builderAddEdit(GroupBuilder $builder)
@@ -52,7 +47,7 @@ class GroupBuilders extends AbstractBaseController
             'builder' => $builder,
         ];
 
-        return $this->view('Hampel\Nesletters:GroupBuilders\Edit', 'newsletters_groupbuilders_edit', $viewParams);
+        return $this->view('Hampel\Newsletters:GroupBuilders\Edit', 'newsletters_groupbuilders_edit', $viewParams);
     }
 
     public function actionAdd(ParameterBag $params)

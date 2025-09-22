@@ -3,12 +3,15 @@
         "hash": "43dad34b038883aadae90e601cbd57d5"
     },
     "newslettersGroupBuilders.json": {
-        "hash": "c1aa7f11162c18f2ec1ba1b62060357c"
+        "hash": "b03cc718b8a49ab7d9e16e56b714e7f6"
     },
     "newslettersGroups.json": {
-        "hash": "5b83bed8f863da3858ce2eb8ca770650"
+        "hash": "a164cbb8c64fe67edefa36b28eb9b654"
+    },
+    "newslettersMailingLists.json": {
+        "hash": "4ee57502ec4552f8178b282f3b8841c8"
     },
     "newslettersSubscribers.json": {
-        "hash": "84c3abaf17ebb59c2b93df37a44865e5"
+        "hash": "3c544638904525fba0b63da047207cea"
     }
 }

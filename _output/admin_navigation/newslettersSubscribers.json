@@ -1,6 +1,6 @@
 {
     "parent_navigation_id": "newsletters",
-    "display_order": 1,
+    "display_order": 2,
     "link": "newsletters/subscribers",
     "icon": "",
     "admin_permission_id": "newsletters",

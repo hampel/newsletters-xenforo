@@ -17,6 +17,12 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "a37ede293936e29279ed543129451ec3"
     },
+    "admin_navigation.newslettersMailingLists.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "1e00da4389c7b280167680427b48f418"
+    },
     "admin_navigation.newslettersSubscribers.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -89,6 +95,12 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "b5859b52c593d24526a0a5458039a083"
     },
+    "newsletters_add_mailing_list.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "cabeb1ff3e720d6d427a3c364dfed522"
+    },
     "newsletters_addon.txt": {
         "global_cache": false,
         "version_id": 1000011,
@@ -148,6 +160,12 @@
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "bcf0986907055f18ce75cd9ea330a5f5"
+    },
+    "newsletters_edit_mailing_list.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "ce6198cd2f7b8ecdd588eb0a61bcff3c"
     },
     "newsletters_edit_subscriber.txt": {
         "global_cache": false,
@@ -286,6 +304,30 @@
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",
         "hash": "71a802efd9b907c97b64e3ef87493255"
+    },
+    "newsletters_mailing_list_description.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "b5a7adde1af5c87d7fd797b6245c2a39"
+    },
+    "newsletters_mailing_list_groups.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "a37ede293936e29279ed543129451ec3"
+    },
+    "newsletters_mailing_list_name.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "49ee3087348e8d44e1feda1917443987"
+    },
+    "newsletters_mailing_lists.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "1e00da4389c7b280167680427b48f418"
     },
     "newsletters_manual.txt": {
         "global_cache": false,

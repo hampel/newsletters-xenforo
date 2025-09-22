@@ -45,11 +45,19 @@ class Install extends Command
 //            $table->changeColumn('description', 'varchar', 255);
         });
 
-//        \XF::db()->getSchemaManager()->alterTable('xf_newsletters_group_builder', function (Alter $table) {
+        \XF::db()->getSchemaManager()->alterTable('xf_newsletters_group_builder', function (Alter $table) {
 //            $table->dropColumns('description');
-//        });
+        });
+
+        \XF::db()->getSchemaManager()->alterTable('xf_newsletters_mailing_list', function (Alter $table) {
+//            $table->addColumn('description', 'varchar', 255)->setDefault('')->after('name');
+//            $table->addColumn('subscriber_count', 'int')->unsigned();
+//            $table->addColumn('group_ids', 'varbinary', 255)->after('description');
+        });
 
 //        \XF::app()->addOnManager()->getById('Hampel/Newsletters')->getSetup()->addGroupBuilder();
+
+//        \XF::db()->getSchemaManager()->renameTable('xf_newsletters_list', 'xf_newsletters_mailing_list');
 
         return Command::SUCCESS;
     }

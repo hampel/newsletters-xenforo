@@ -24,6 +24,16 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "77ad1e6bd46f7592443eaf198d13bcfc"
     },
+    "admin/newsletters_mailinglists_edit.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "f491fc035c233fba2967f52e065c73e3"
+    },
+    "admin/newsletters_mailinglists_list.html": {
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "4e044f4355d40ddafee3ec5d5a367606"
+    },
     "admin/newsletters_subscribers_edit.html": {
         "version_id": 1000011,
         "version_string": "1.0.0 Alpha 1",

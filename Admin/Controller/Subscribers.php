@@ -3,7 +3,6 @@
 use Hampel\Newsletters\Entity\Subscriber;
 use Hampel\Newsletters\Filterer\Subscriber as SubscriberFilterer;
 use XF\ControllerPlugin\DeletePlugin;
-use XF\Mvc\FormAction;
 use XF\Mvc\ParameterBag;
 
 class Subscribers extends AbstractBaseController

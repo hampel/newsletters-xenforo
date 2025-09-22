@@ -70,18 +70,12 @@ class Setup extends AbstractSetup
             $table->addKey('addon_id');
         });
 
-        $this->schemaManager()->createTable('xf_newsletters_map', function (Create $table) {
-            $table->addColumn('map_id', 'int')->unsigned()->autoIncrement();
-            $table->addColumn('list_id', 'int')->unsigned();
-            $table->addColumn('group_id', 'int')->unsigned();
-            $table->addKey('list_id');
-            $table->addKey('group_id');
-        });
-
-        $this->schemaManager()->createTable('xf_newsletters_list', function (Create $table) {
+        $this->schemaManager()->createTable('xf_newsletters_mailing_list', function (Create $table) {
             $table->addColumn('list_id', 'int')->unsigned()->autoIncrement();
             $table->addColumn('name', 'varchar', 128);
-            $table->addColumn('created_date', 'int')->unsigned();
+            $table->addColumn('description', 'varchar', 255);
+            $table->addColumn('group_ids', 'varbinary', 255);
+            $table->addColumn('subscriber_count', 'int')->unsigned();
         });
 
 	}
@@ -124,7 +118,6 @@ class Setup extends AbstractSetup
         $this->schemaManager()->dropTable('xf_newsletters_subscription');
         $this->schemaManager()->dropTable('xf_newsletters_group');
         $this->schemaManager()->dropTable('xf_newsletters_group_builder');
-        $this->schemaManager()->dropTable('xf_newsletters_map');
         $this->schemaManager()->dropTable('xf_newsletters_list');
 	}
 

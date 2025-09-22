@@ -1,0 +1,32 @@
+<xf:if is="$list.isInsert()">
+	<xf:title>{{ phrase('newsletters_add_mailing_list') }}</xf:title>
+<xf:else />
+	<xf:title>{{ phrase('newsletters_edit_mailing_list') }}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$list.isUpdate()">
+	<xf:button href="{{ link('newsletters/mailing-lists/delete', $list) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+
+
+<xf:form action="{{ link('newsletters/mailing-lists/save', $list) }}" ajax="true" data-force-flash-message="on" class="block">
+	<div class="block-container">
+		<div class="block-body">
+						
+			<xf:textboxrow name="name" value="{$list}"
+				label="{{ phrase('newsletters_mailing_list_name') }}" />
+			
+			<xf:textboxrow name="description" value="{$list}"
+				label="{{ phrase('newsletters_mailing_list_description') }}" />		
+
+			<xf:checkboxrow name="group_ids" value="{$list.group_ids}" listclass="listColumns"
+							label="{{ phrase('newsletters_mailing_list_groups') }}">
+				<xf:options source="$groups" />
+			</xf:checkboxrow>			
+			
+						
+		</div>
+		<xf:submitrow icon="save" sticky="true" />
+	</div>
+</xf:form>
